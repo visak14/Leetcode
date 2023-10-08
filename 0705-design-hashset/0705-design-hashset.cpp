@@ -1,38 +1,42 @@
 class MyHashSet {
 public:
-     ListNode* head ;
+    ListNode* head;
     MyHashSet() {
-      head = new ListNode(-1);
+       head = new ListNode(-1); 
     }
     
     void add(int key) {
-      ListNode* temp = head;
+        ListNode* temp = head;
         while(temp->next != NULL){
-            if(temp->next->val == key) return;
-            temp = temp->next;
+            if (temp->next->val  == key) return ;
+             temp = temp->next;
         }
-        ListNode* newnode = new ListNode(key);
-        temp->next = newnode;
-    }
+             ListNode* newnode = new ListNode(key);
+             temp->next = newnode;
+        }  
+    
     
     void remove(int key) {
-        ListNode * temp = head;
-        while (temp->next != NULL){
-            if (temp->next->val == key){
+        ListNode* temp = head;
+        while(temp->next != NULL){
+            if (temp->next->val  == key) {
                 temp->next = temp->next->next;
                 break;
-           }
-            temp = temp->next;
+            }
+                temp = temp->next;
+    
         }
     }
+        
     
     bool contains(int key) {
-     ListNode * temp = head->next;
-        while (temp != NULL){
-            if (temp->val == key)  return true;
-            temp = temp->next;
+       ListNode * temp = head->next;
+        while(temp != NULL){
+            if (temp->val  == key)
+                return true;
+               temp = temp->next;
         }
-        return false;
+              return false;
     }
 };
 
