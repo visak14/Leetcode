@@ -1,7 +1,7 @@
 class Solution {
 public:
    bool isvalid(vector<vector<int>>& image, int i, int j, int m, int n , int color){
-       if (i>=0 && j>=0 && i<n && i<m &&  image[i][j] == color)
+       if (i>=0 && j>=0 && i<n && j<m &&  image[i][j] == color)
             return true;
          return false;
        
