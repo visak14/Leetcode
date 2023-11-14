@@ -1,24 +1,24 @@
 class Solution {
 public:
     
-    bool dfsRec(int s , vector<bool>&visited, vector<bool>&notVisited, vector<int>adj[]  ){
+    bool dfsRec(int s , vector<bool>&visited, vector<bool>&currVisited, vector<int>adj[]  ){
         visited[s] = true;
-        notVisited[s]= true;
+        currVisited[s]= true;
         
         vector<int> data = adj[s];
         for (auto x: data){
             if (!visited[x]){
-                if(dfsRec(x,visited,notVisited,adj))
+                if(dfsRec(x,visited,currVisited,adj))
                 {
                     return true;
                 }
                 
             }
-            else if (visited[x] && notVisited[x]){
+            else if (visited[x] && currVisited[x]){
                 return true;
             }
         }
-            notVisited[s]  = false;
+            currVisited[s]  = false;
             return false;
         
     }
@@ -27,7 +27,7 @@ public:
     
     bool canFinish(int numCourses, vector<vector<int>>& prereq) {
         int n = numCourses;
-        vector<bool>visited(n, false), notVisited(n, false);
+        vector<bool>visited(n, false), currVisited(n, false);
         vector<int>adj[n];
         for (auto x: prereq){
            vector<int> data = x;
@@ -37,7 +37,7 @@ public:
         }
         for (int i = 0; i<n; i++){
             if (!visited[i]){
-                if (dfsRec(i, visited, notVisited, adj)){
+                if (dfsRec(i, visited, currVisited, adj)){
                     return false;
                 }
             }
