@@ -1,28 +1,21 @@
 class Solution {
 public:
     vector<int> findIntersectionValues(vector<int>& nums1, vector<int>& nums2) {
-        vector<int>ans;
-        int res1 = 0, res2 = 0;
-        int m = nums1.size();
-        int n = nums2.size();
-        for(int i = 0 ;  i< m; i++){
-            for( int j = 0 ; j < n; j++){
-                if(nums1[i] == nums2[j]){
-                    res1++;
-                    break;
-                }
+     std:: unordered_set<int> set1(nums1.begin(), nums1.end());
+      std:: unordered_set<int> set2(nums2.begin(), nums2.end());
+        int count1 = 0, count2 = 0;
+        
+        for(int num: nums1){
+            if(set2.find(num) != set2.end()){
+                count1++;
             }
         }
-        for(int i = 0 ;  i< n; i++){
-            for( int j = 0 ; j < m; j++){
-                if(nums2[i] == nums1[j]){
-                    res2++;
-                    break;
-                }
+         for(int num: nums2){
+            if(set1.find(num) !=  set1.end()){
+                count2++;
             }
         }
-        ans.push_back(res1);
-        ans.push_back(res2);
-        return ans;
+        return {count1, count2};
+        
     }
 };
